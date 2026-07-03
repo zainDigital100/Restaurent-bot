@@ -1,0 +1,7 @@
+google-genai
+numpy
+pandas
+openpyxl
+fastapi
+uvicorn[standard]
+pydantic
