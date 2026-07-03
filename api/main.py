@@ -45,6 +45,6 @@ def reset(session_id: str):
 @app.get("/api/health")
 def health():
     return {"status": "ok"}
-# @app.get("/")
-# def read_root():
-#     return {"message": "Chatbot API is running"}
+@app.get("/api/")
+def read_root():
+    return {"message": "Chatbot API is running"}
