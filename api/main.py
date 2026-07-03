@@ -29,20 +29,20 @@ class ChatResponse(BaseModel):
     reply: str
 
 
-@app.post("/chat", response_model=ChatResponse)
+@app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     session_id = req.session_id or str(uuid.uuid4())
     reply = send_message(session_id, req.message)
     return ChatResponse(session_id=session_id, reply=reply)
 
 
-@app.post("/reset/{session_id}")
+@app.post("/api/reset/{session_id}")
 def reset(session_id: str):
     reset_session(session_id)
     return {"status": "reset", "session_id": session_id}
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 # @app.get("/")
