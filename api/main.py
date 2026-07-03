@@ -15,10 +15,20 @@ import uuid
 from fastapi import FastAPI
 from pydantic import BaseModel
 from bot.chatbot import send_message, reset_session
-
 app = FastAPI(title="Restaurant Chatbot API")
 
+from fastapi.middleware.cors import CORSMiddleware
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class ChatRequest(BaseModel):
     session_id: str | None = None
     message: str
